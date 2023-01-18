@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +17,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::group(["prefix"=>"/"],function(){
+    Route::get("",[HomeController::class, 'index'])->middleware("auth");
+    Route::get("home",[HomeController::class, 'index'])->middleware("auth")->name("home");
+    Route::get("register", [RegisterController::class, 'index'])->middleware("guest")->name('auth.register');
+    Route::post("register", [RegisterController::class, 'store']);
+    Route::get("login",[LoginController::class, 'index'])->middleware("guest")->name("auth.login");
+    Route::post("login",[LoginController::class, 'store']);
+    Route::post("logout",[LogoutController::class, 'store'])->middleware("auth")->name("auth.logout");
+});
+Route::group(['prefix'=>"admin"],function(){
+    Route::get('/',function(){
+        return view('admin.index');
+    });
 });
