@@ -33,6 +33,13 @@
               <!-- /.card-header -->
               <!-- form start -->
               <form action="{{ route("auth.register") }}" method="POST">
+                @if (session("status"))
+                <div class="alert alert-danger" role="alert">
+                  {{ session("status") }}
+                </div>
+                
+                @endif
+                <input type="hidden" value="{{ $invite_code }}" name="code">
                 @csrf
                 <div class="card-body">
                     <div class="form-group">

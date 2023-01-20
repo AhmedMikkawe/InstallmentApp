@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InviteCodeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,8 +28,15 @@ Route::group(["prefix"=>"/"],function(){
     Route::post("login",[LoginController::class, 'store']);
     Route::post("logout",[LogoutController::class, 'store'])->middleware("auth")->name("auth.logout");
 });
-Route::group(['prefix'=>"admin"],function(){
+Route::group(['prefix'=>"admin","middleware"=>"auth"],function(){
     Route::get('/',function(){
         return view('admin.index');
     });
+    Route::get("/invite_code", [InviteCodeController::class, 'index'])->name("invite_code.index");
+
+    Route::get("/invite_code/create", [InviteCodeController::class, 'create'])->name("invite_code.create");
+    Route::get("/invite_code/edit/{id}", [InviteCodeController::class, 'edit'])->name("invite_code.edit");
+    Route::post("/invite_code/update/{id}", [InviteCodeController::class, 'update'])->name("invite_code.update");
+
+    Route::post("/invite_code/create", [InviteCodeController::class, 'store']);
 });

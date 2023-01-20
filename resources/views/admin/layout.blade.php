@@ -33,10 +33,18 @@
       
 
     </ul>
-    <form action="{{ url("/logout") }}" method="POST" class="ml-auto">
+    @guest
+    <div class="ml-auto d-flex">
+      <a class="btn btn-success mr-2" href="{{ route("auth.register") }}">Register</a>
+      <a class="btn btn-warning" href="{{ route("auth.login") }}">Login</a>
+    </div>
+    @endguest
+    @auth
+    <form action="{{ route('auth.logout') }}" method="POST" class="ml-auto">
         @csrf
         <input type="submit" class="btn btn-danger" value="Logout">
         </form>
+    @endauth
   
   </nav>
   <!-- /.navbar -->
@@ -52,14 +60,16 @@
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
+      @auth
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
           <img src="{{ asset('assets/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">{{ auth()->user()->username }}</a>
         </div>
       </div>
+      @endauth
 
       <!-- SidebarSearch Form -->
       <div class="form-inline">
@@ -108,16 +118,31 @@
               
             </ul>
           </li>
+          
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+            <a href="#" class="nav-link">
+                <i class="fas fa-user-secret nav-icon"></i>
               <p>
-                Widgets
-                <span class="right badge badge-danger">New</span>
+                Invite Codes
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route("invite_code.index") }}" class="nav-link">
+                    <i class="fas fa-users nav-icon"></i>
+                  <p>All Codes</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route("invite_code.create") }}" class="nav-link">
+                  <i class="fas fa-user-secret nav-icon"></i>
+                  <p>New Code</p>
+                </a>
+              </li>              
+            </ul>
           </li>
-          
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
