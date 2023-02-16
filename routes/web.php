@@ -28,10 +28,10 @@ Route::group(["prefix"=>"/"],function(){
     Route::post("login",[LoginController::class, 'store']);
     Route::post("logout",[LogoutController::class, 'store'])->middleware("auth")->name("auth.logout");
 });
-Route::group(['prefix'=>"admin","middleware"=>"auth"],function(){
+Route::group(['prefix'=>"admin","middleware"=>["auth","role:super-admin"]],function(){
     Route::get('/',function(){
         return view('admin.index');
-    });
+    })->name("admin");
     Route::get("/invite_code", [InviteCodeController::class, 'index'])->name("invite_code.index");
 
     Route::get("/invite_code/create", [InviteCodeController::class, 'create'])->name("invite_code.create");

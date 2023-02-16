@@ -18,6 +18,9 @@ class LoginController extends Controller
         if(!auth()->attempt($request->only("email","password"))){
             return back()->with("status", "Invalid Login Details");
         }
+        if (auth()->user()->hasRole('super-admin')){
+            return redirect()->route("admin");
+        }
         return redirect()->route("home");
     }
 }
