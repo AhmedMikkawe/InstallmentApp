@@ -15,14 +15,13 @@ class RegisterController extends Controller
         return view("auth.register", ['invite_code'=>$invite_code]);
     }
     function store(Request $request){
-        
         $this->validate($request,[
             "username"=>"min:3|max:20|required",
             "fullname"=> "required|max:120|min:10",
             "email"=>"email|required|unique:users",
             "password"=>"required|confirmed",
             "nationalId"=>"required|unique:users",
-            "nationalId-photo"=>"required",
+            "nationalId-photo"=>"required|image|mimes:jpg,png,jpeg",
             "phone-number"=>"required|min:6|unique:users"
         ]);
         $inviteCode = InviteCode::where('code', $request->code)->get();
@@ -35,9 +34,13 @@ class RegisterController extends Controller
             "email" => $request->email,
             "password"=> Hash::make($request->password),
             "nationalId" => $request->nationalId,
-            "nationalId-photo"=> $request->get("nationalId-photo"),
+            "nationalId-photo"=>  $fileName = time().'.'.$request->file('nationalId-photo')->extension(),
             "phone-number"=> $request->get("phone-number")
         ]);
+        InviteCode::where('code', $request->code)->update([
+            'valid'=> False
+        ]);
+        $request->file('nationalId-photo')->move(public_path('uploads/customer_nationalId'), $fileName);
         auth()->attempt($request->only("email","password"));
         return redirect()->route("home");
     }

@@ -32,19 +32,19 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="{{ route("auth.register") }}" method="POST">
+              <form action="{{ route("auth.register") }}" method="POST" enctype="multipart/form-data">
                 @if (session("status"))
                 <div class="alert alert-danger" role="alert">
                   {{ session("status") }}
                 </div>
-                
+
                 @endif
                 <input type="hidden" value="{{ $invite_code }}" name="code">
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
                         <label for="username">user Name</label>
-                        <input name="username" type="text" class="form-control 
+                        <input name="username" type="text" class="form-control
                         @error("username")
                             is-invalid
                         @enderror " id="username" placeholder="user name" value="{{ old("username") }}">
@@ -110,7 +110,7 @@
                           </div>
                           @enderror
                       </div>
-  
+
                   <div class="form-group">
                     <label for="nationalId">National ID</label>
                     <input name="nationalId" type="text" class="form-control @error("nationalId")
@@ -126,7 +126,7 @@
                     <label for="exampleInputFile">National ID Photo</label>
                     <div class="input-group">
                       <div class="custom-file">
-                        <input name="nationalId-photo" type="file" id="exampleInputFile">
+                        <input name="nationalId-photo" type="file" id="exampleInputFile" accept="image/*">
                       </div>
                     </div>
                     @error("nationalId-photo")
@@ -135,7 +135,7 @@
                         </div>
                         @enderror
                   </div>
-                  
+
                 </div>
                 <!-- /.card-body -->
 
