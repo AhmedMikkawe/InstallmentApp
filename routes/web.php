@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InviteCodeController;
+use App\Http\Controllers\KafeelController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,6 +28,11 @@ Route::group(["prefix"=>"/"],function(){
     Route::get("login",[LoginController::class, 'index'])->middleware("guest")->name("auth.login");
     Route::post("login",[LoginController::class, 'store']);
     Route::post("logout",[LogoutController::class, 'store'])->middleware("auth")->name("auth.logout");
+    /*Kafeel*/
+    Route::get("kafeel/create",[KafeelController::class, 'create'])->middleware('auth')->name("kafeel.create");
+    Route::post("kafeel/create",[KafeelController::class, 'store'])->middleware('auth');
+    Route::get("kafeel/edit/{id}",[KafeelController::class,'edit'])->middleware('auth')->name("kafeel.edit");
+    Route::post("kafeel/update/{id}",[KafeelController::class,'update'])->middleware('auth')->name("kafeel.update");
 });
 Route::group(['prefix'=>"admin","middleware"=>["auth","role:super-admin"]],function(){
     Route::get('/',function(){

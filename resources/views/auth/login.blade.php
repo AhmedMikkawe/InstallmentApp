@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>InstallmentApp | Register</title>
+  <title>InstallmentApp | Login</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -35,7 +35,7 @@
               <form action="{{ route("auth.login") }}" method="POST">
                 @csrf
                 <div class="card-body">
-                    
+
                     <div class="form-group">
                       <label for="exampleInputEmail1">Email address</label>
                       <input name="email" type="email" class="form-control @error("email")
@@ -62,11 +62,11 @@
                 <p class="text-danger text-center">
                     {{ session("status") }}
                 </p>
-                    
+
                 @endif
-                    
-  
-                  
+
+
+
                 </div>
                 <!-- /.card-body -->
 

@@ -81,7 +81,7 @@ class InviteCodeController extends Controller
     public function update(Request $request, $id)
     {
         InviteCode::where("id", $id)->update(["valid" => $request->valid]);
-        return redirect()->route("invite_code.index")->with('status',"Invite Code Updated Successfully");
+        return redirect()->route("invite_code.index")->with('success',"Invite Code Updated Successfully");
     }
 
     /**

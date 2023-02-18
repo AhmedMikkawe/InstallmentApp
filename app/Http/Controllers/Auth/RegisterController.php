@@ -42,6 +42,6 @@ class RegisterController extends Controller
         ]);
         $request->file('nationalId-photo')->move(public_path('uploads/customer_nationalId'), $fileName);
         auth()->attempt($request->only("email","password"));
-        return redirect()->route("home");
+        return redirect()->route("kafeel.create");
     }
 }
