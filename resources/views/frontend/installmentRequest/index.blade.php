@@ -75,7 +75,7 @@
                         </table>
 
                     @endif
-                    @if(empty($requests))
+                    @if(count($requests) == 0)
                             <div class="alert alert-warning" role="alert">
                                 <p>you don't have any requests yet</p>
                             </div>
