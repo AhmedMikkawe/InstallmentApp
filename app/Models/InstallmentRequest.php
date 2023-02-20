@@ -14,7 +14,8 @@ class InstallmentRequest extends Model
         'request_type',
         'installment_value',
         'installment_count',
-        'total'];
+        'total',
+        'user_id'];
     public function installments(){
         return $this->hasMany(Installment::class);
     }

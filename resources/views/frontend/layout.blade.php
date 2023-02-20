@@ -128,7 +128,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./index.html" class="nav-link">
+                <a href="{{route('installmentRequest.index')}}" class="nav-link">
                     <i class="fas fa-money-check-alt nav-icon"></i>
                   <p>All Installments</p>
                 </a>
@@ -140,7 +140,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index2.html" class="nav-link">
+                <a href="{{ route('installmentRequest.create') }}" class="nav-link">
                   <i class="fas fa-file-invoice-dollar nav-icon"></i>
                   <p>New Request</p>
                 </a>

@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InstallmentRequestController;
 use App\Http\Controllers\InviteCodeController;
 use App\Http\Controllers\KafeelController;
 use Illuminate\Support\Facades\Route;
@@ -33,6 +34,11 @@ Route::group(["prefix"=>"/"],function(){
     Route::post("kafeel/create",[KafeelController::class, 'store'])->middleware('auth');
     Route::get("kafeel/edit/{id}",[KafeelController::class,'edit'])->middleware('auth')->name("kafeel.edit");
     Route::post("kafeel/update/{id}",[KafeelController::class,'update'])->middleware('auth')->name("kafeel.update");
+    /*Installment Request*/
+    Route::get("installments",[InstallmentRequestController::class,'index'])->middleware('auth')->name("installmentRequest.index");
+    Route::get('installments/create',[InstallmentRequestController::class,'create'])->middleware('auth')->name("installmentRequest.create");
+    Route::post('installments/create',[InstallmentRequestController::class,'store'])->middleware('auth');
+
 });
 Route::group(['prefix'=>"admin","middleware"=>["auth","role:super-admin"]],function(){
     Route::get('/',function(){
