@@ -19,4 +19,7 @@ class InstallmentRequest extends Model
     public function installments(){
         return $this->hasMany(Installment::class);
     }
+    public function users(){
+        return $this->belongsTo(User::class);
+    }
 }

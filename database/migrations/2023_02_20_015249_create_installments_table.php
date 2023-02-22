@@ -20,7 +20,7 @@ return new class extends Migration
             $table->double("value");
             $table->date("date");
             $table->timestamps();
-            $table->foreignId("installment_requests_id")->references('id')->on("installment_requests")->onDelete("cascade");
+            $table->foreignId("installment_request_id")->references('id')->on("installment_requests")->onDelete("cascade");
 
         });
     }

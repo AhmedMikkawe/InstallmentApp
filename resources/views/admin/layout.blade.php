@@ -30,7 +30,7 @@
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
-      
+
 
     </ul>
     @guest
@@ -45,14 +45,14 @@
         <input type="submit" class="btn btn-danger" value="Logout">
         </form>
     @endauth
-  
+
   </nav>
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="{{route('admin')}}" class="brand-link">
       <img src="{{ asset("assets/img/AdminLTELogo.png") }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Installment App</span>
     </a>
@@ -98,12 +98,33 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./index.html" class="nav-link">
+                <a href="{{route("allInstallmentRequests")}}" class="nav-link">
                     <i class="fas fa-money-check-alt nav-icon"></i>
-                  <p>All Installments</p>
+                  <p>All Requests</p>
                 </a>
               </li>
-              <li class="nav-item">
+                <li class="nav-item">
+                    <a href="{{route("allPendingInstallmentRequests")}}" class="nav-link">
+                        <i class="fas fa-money-check-alt nav-icon"></i>
+                        <p>All Pending Requests</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{route("allApprovedInstallmentRequests")}}" class="nav-link">
+                        <i class="fas fa-money-check-alt nav-icon"></i>
+                        <p>All Approved Requests</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{route("allRejectedInstallmentRequests")}}" class="nav-link">
+                        <i class="fas fa-money-check-alt nav-icon"></i>
+                        <p>All Rejected Requests</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
                 <a href="./index2.html" class="nav-link">
                   <i class="fa fa-credit-card nav-icon"></i>
                   <p>New Installment</p>
@@ -115,10 +136,10 @@
                   <p>New Request</p>
                 </a>
               </li>
-              
+
             </ul>
           </li>
-          
+
           <li class="nav-item">
             <a href="#" class="nav-link">
                 <i class="fas fa-user-secret nav-icon"></i>
@@ -139,7 +160,7 @@
                   <i class="fas fa-user-secret nav-icon"></i>
                   <p>New Code</p>
                 </a>
-              </li>              
+              </li>
             </ul>
           </li>
 
@@ -153,7 +174,7 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     @yield("content")
-    
+
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">

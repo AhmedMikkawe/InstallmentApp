@@ -91,4 +91,46 @@ class InstallmentRequestController extends Controller
     {
         //
     }
+    public function all(){
+        $installments = InstallmentRequest::get();
+        return view("admin.installments.index",['installments'=> $installments]);
+    }
+    public function allRejected(){
+        $installments = InstallmentRequest::where('request_status' , 'rejected')->get();
+        return view("admin.installments.index",['installments'=>$installments]);
+    }
+    public function allApproved(){
+        $installments = InstallmentRequest::where('request_status' , 'approved')->get();
+        return view("admin.installments.index",['installments'=>$installments]);
+    }
+    public function allPending(){
+        $installments = InstallmentRequest::where('request_status' , 'pending')->get();
+        return view("admin.installments.index",['installments'=>$installments]);
+    }
+    public function showInstallmentRequest($id){
+        $request = InstallmentRequest::with(['users','installments'])->where('id',$id)->get();
+        dd($request);
+        return view("admin.installments.show",['request'=>$request]);
+    }
+    public function editInstallmentRequest($id){
+        $request = InstallmentRequest::where('id',$id)->first();
+        return view("admin.installments.edit",['request'=>$request]);
+
+    }
+    public function updateInstallmentRequest(Request $request, $id){
+        $this->validate($request,[
+            'required_device'=> 'required',
+            'installment_value'=>'required|numeric',
+            'installment_count'=>'required|integer'
+        ]);
+        InstallmentRequest::where('id',$id)->update([
+            'required_device' =>$request->required_device,
+            'request_status' =>$request->request_status,
+            'request_type' =>$request->request_type,
+            'installment_value' =>$request->installment_value,
+            'installment_count' =>$request->installment_count,
+            'total' =>$request->installment_value * $request->installment_count,
+        ]);
+        return redirect()->route("allInstallmentRequests")->with('success','installment request updated successfully');
+    }
 }

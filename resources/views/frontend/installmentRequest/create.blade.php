@@ -29,7 +29,7 @@
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="requiredDevice">Full Name</label>
+                                    <label for="requiredDevice">Product Name</label>
                                     <input name="required_device" type="text" class="form-control" id="requiredDevice" placeholder="Enter Required Device" value="{{old("required_device")}}">
                                     @error("required_device")
                                     <div class="text-danger">
@@ -39,8 +39,8 @@
 
                                 </div>
                                 <div class="form-group">
-                                    <label for="kafeelPhoneNumber">Phone Number</label>
-                                    <select class="custom-select" name="request_type">
+                                    <label for="requestType">Request Type</label>
+                                    <select class="custom-select" name="request_type" id="requestType">
                                         <option value="monthly">monthly</option>
                                         <option value="3 months">3 months</option>
                                         <option value="6 months">6 months</option>

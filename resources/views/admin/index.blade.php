@@ -7,12 +7,12 @@
             <div class="col-sm-6">
               <h1 class="m-0">Dashboard</h1>
             </div><!-- /.col -->
-            
+
           </div><!-- /.row -->
         </div><!-- /.container-fluid -->
       </div>
       <!-- /.content-header -->
-  
+
       <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
@@ -22,25 +22,25 @@
               <!-- small box -->
               <div class="small-box bg-info">
                 <div class="inner">
-                  <h3>150</h3>
-  
-                  <p>New Orders</p>
+                  <h3>{{$newRequests}}</h3>
+
+                  <p>New Requests</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-bag"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{route("allPendingInstallmentRequests")}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
-            
+
             <!-- ./col -->
             <div class="col-lg-3 col-6">
               <!-- small box -->
               <div class="small-box bg-warning">
                 <div class="inner">
-                  <h3>44</h3>
-  
+                  <h3>{{$users}}</h3>
+
                   <p>User Registrations</p>
                 </div>
                 <div class="icon">
@@ -49,7 +49,7 @@
                 <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
-            
+
           </div>
           <!-- /.row -->
         </div><!-- /.container-fluid -->

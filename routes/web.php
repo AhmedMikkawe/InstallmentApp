@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -41,9 +42,7 @@ Route::group(["prefix"=>"/"],function(){
 
 });
 Route::group(['prefix'=>"admin","middleware"=>["auth","role:super-admin"]],function(){
-    Route::get('/',function(){
-        return view('admin.index');
-    })->name("admin");
+    Route::get('/',[AdminController::class,'index'])->name("admin");
     Route::get("/invite_code", [InviteCodeController::class, 'index'])->name("invite_code.index");
 
     Route::get("/invite_code/create", [InviteCodeController::class, 'create'])->name("invite_code.create");
@@ -51,4 +50,15 @@ Route::group(['prefix'=>"admin","middleware"=>["auth","role:super-admin"]],funct
     Route::post("/invite_code/update/{id}", [InviteCodeController::class, 'update'])->name("invite_code.update");
 
     Route::post("/invite_code/create", [InviteCodeController::class, 'store']);
+    /*Installments*/
+    Route::get("/installments",[InstallmentRequestController::class,'all'])->name("allInstallmentRequests");
+    Route::get("/installments/rejected",[InstallmentRequestController::class,'allRejected'])->name("allRejectedInstallmentRequests");
+    Route::get("/installments/approved",[InstallmentRequestController::class,'allApproved'])->name("allApprovedInstallmentRequests");
+    Route::get("/installments/pending",[InstallmentRequestController::class,'allPending'])->name("allPendingInstallmentRequests");
+
+
+
+    Route::get("/installments/{id}",[InstallmentRequestController::class, 'showInstallmentRequest'])->name("certainRequest");
+    Route::get("/installments/edit/{id}",[InstallmentRequestController::class, 'editInstallmentRequest'])->name("editCertainRequest");
+    Route::post("/installments/edit/{id}",[InstallmentRequestController::class, 'updateInstallmentRequest'])->name("updateCertainRequest");
 });
