@@ -7,12 +7,12 @@
             <div class="col-sm-6">
               <h1 class="m-0">Dashboard</h1>
             </div><!-- /.col -->
-            
+
           </div><!-- /.row -->
         </div><!-- /.container-fluid -->
       </div>
       <!-- /.content-header -->
-  
+
       <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
@@ -22,7 +22,7 @@
               <div class="alert alert-success" role="alert">
               {{ session('success') }}
                 </div>
-                
+
               @endif
 
               <table class="table table-hover">
@@ -40,16 +40,27 @@
                     <th scope="row">{{ $invite_code->id }}</th>
                     <td>{{ $invite_code->code }}</td>
                     <td>{{ $invite_code->valid == 1 ? "Valid" : "Not Vaild"}}</td>
-                    <td> <a class="btn btn-warning" href="{{ route("invite_code.edit",$invite_code->id) }}">Edit</a> </td>
+                    <td>
+                        <a class="btn btn-warning" href="{{ route("invite_code.edit",$invite_code->id) }}">Edit</a>
+                        <button class="btn btn-info copyCode" data-clipboard-text="{{route("auth.register")}}?code={{$invite_code->code}}">Copy</button>
+                    </td>
                   </tr>
-                    
+
                   @endforeach
                 </tbody>
               </table>
             </div>
-            
+
           </div>
-          
+
         </div>
       </section>
+@endsection
+@section('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.10/dist/clipboard.min.js"></script>
+    <script>
+        new ClipboardJS('.copyCode');
+    </script>
+
+
 @endsection
