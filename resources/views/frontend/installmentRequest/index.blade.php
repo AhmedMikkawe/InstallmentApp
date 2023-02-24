@@ -47,7 +47,15 @@
                             @foreach($requests as $request)
                                 <tr>
                                     <th scope="row">{{$counter++}}</th>
-                                    <td>{{$request->required_device}}</td>
+                                    <td>
+                                        @if($request->request_status == 'approved')
+                                            <a href="{{route("installmentRequest.show",$request->id)}}">{{$request->required_device}}</a>
+                                        @endif
+                                        @if($request->request_status != 'approved')
+                                                {{$request->required_device}}
+                                        @endif
+
+                                    </td>
                                     <td>
                                         <span class="badge
                                         @if($request->request_status == 'approved') badge-success @endif

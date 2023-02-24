@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InstallmentController;
 use App\Http\Controllers\InstallmentRequestController;
 use App\Http\Controllers\InviteCodeController;
 use App\Http\Controllers\KafeelController;
@@ -39,6 +40,8 @@ Route::group(["prefix"=>"/"],function(){
     Route::get("installments",[InstallmentRequestController::class,'index'])->middleware('auth')->name("installmentRequest.index");
     Route::get('installments/create',[InstallmentRequestController::class,'create'])->middleware('auth')->name("installmentRequest.create");
     Route::post('installments/create',[InstallmentRequestController::class,'store'])->middleware('auth');
+    Route::get("installments/{id}",[InstallmentController::class, 'show'])->middleware(["auth","installment_request_is_approved"])->name("installmentRequest.show");
+    Route::post("installments/{id}",[InstallmentController::class, 'store'])->middleware("auth")->name("installment.store");
 
 });
 Route::group(['prefix'=>"admin","middleware"=>["auth","role:super-admin"]],function(){

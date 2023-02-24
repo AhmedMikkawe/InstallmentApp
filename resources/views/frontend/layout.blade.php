@@ -134,12 +134,6 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index2.html" class="nav-link">
-                  <i class="fa fa-credit-card nav-icon"></i>
-                  <p>New Installment</p>
-                </a>
-              </li>
-              <li class="nav-item">
                 <a href="{{ route('installmentRequest.create') }}" class="nav-link">
                   <i class="fas fa-file-invoice-dollar nav-icon"></i>
                   <p>New Request</p>

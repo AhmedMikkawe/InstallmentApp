@@ -18,7 +18,7 @@ return new class extends Migration
             $table->enum("installment_status",['pending','approved','rejected'])->default('pending');
             $table->string("receipt_photo");
             $table->double("value");
-            $table->date("date");
+            $table->date("date")->nullable(true);
             $table->timestamps();
             $table->foreignId("installment_request_id")->references('id')->on("installment_requests")->onDelete("cascade");
 
