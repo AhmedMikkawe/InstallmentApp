@@ -60,6 +60,8 @@ Route::group(['prefix'=>"admin","middleware"=>["auth","role:super-admin"]],funct
     Route::get("/installments/approved",[InstallmentRequestController::class,'allApproved'])->name("allApprovedInstallmentRequests");
     Route::get("/installments/pending",[InstallmentRequestController::class,'allPending'])->name("allPendingInstallmentRequests");
 
+    Route::get("/installments/create",[InstallmentRequestController::class, 'adminAddInstallmentRequest'])->name("adminAddInstallmentRequest");
+    Route::post("/installments/create",[InstallmentRequestController::class, 'adminStoreInstallmentRequest'])->name("adminStoreInstallmentRequest");
 
 
     Route::get("/installments/{id}",[InstallmentRequestController::class, 'showInstallmentRequest'])->name("certainRequest");

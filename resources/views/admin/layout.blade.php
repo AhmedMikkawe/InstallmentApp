@@ -123,6 +123,13 @@
                         <p>All Rejected Requests</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{route("adminAddInstallmentRequest")}}" class="nav-link">
+                        <i class="fas fa-money-check-alt nav-icon"></i>
+                        <p>Add Installment Request</p>
+                    </a>
+                </li>
+
             </ul>
           </li>
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\InstallmentRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class InstallmentRequestController extends Controller
@@ -132,4 +133,27 @@ class InstallmentRequestController extends Controller
         ]);
         return redirect()->route("allInstallmentRequests")->with('success','installment request updated successfully');
     }
+    public function adminAddInstallmentRequest(){
+        $users = User::get();
+        return view("admin.installments.create",['users'=>$users]);
+    }
+    public function adminStoreInstallmentRequest(Request $request){
+        $this->validate($request,[
+            'required_device'=> 'required',
+            'installment_value'=>'required|numeric',
+            'installment_count'=>'required|integer',
+            'user'=> 'required'
+        ]);
+        $user = User::where('id',$request->user)->firstOrFail();
+        $user->installment_requests()->create([
+            "required_device" => $request->required_device,
+            "request_type" => $request->request_type,
+            "request_status" => $request->request_status,
+            "installment_value" => $request->installment_value,
+            "installment_count" => $request->installment_count,
+            "total" => $request->total
+        ]);
+        return redirect()->route("allInstallmentRequests")->with("success","created installment request for user $user->fullname successfully");
+    }
+
 }
