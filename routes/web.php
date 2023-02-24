@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\ExportsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InstallmentController;
 use App\Http\Controllers\InstallmentRequestController;
@@ -64,4 +65,13 @@ Route::group(['prefix'=>"admin","middleware"=>["auth","role:super-admin"]],funct
     Route::get("/installments/{id}",[InstallmentRequestController::class, 'showInstallmentRequest'])->name("certainRequest");
     Route::get("/installments/edit/{id}",[InstallmentRequestController::class, 'editInstallmentRequest'])->name("editCertainRequest");
     Route::post("/installments/edit/{id}",[InstallmentRequestController::class, 'updateInstallmentRequest'])->name("updateCertainRequest");
+    Route::post("/installments/{id}",[InstallmentController::class, 'adminStoreInstallment'])->name("adminStoreInstallment");
+    Route::delete("/installments/{id}/delete/{id2}",[InstallmentController::class, 'adminDeleteInstallment'])->name("adminDeleteInstallment");
+    Route::get("/installments/{id}/edit/{id2}",[InstallmentController::class, 'adminEditInstallment'])->name("adminEditInstallment");
+    Route::post("/installments/{id}/edit/{id2}",[InstallmentController::class, 'adminUpdateInstallment'])->name("adminUpdateInstallment");
+    /*Exports*/
+    Route::get('/exports/users',[ExportsController::class,'users'])->name('export.users');
+    Route::get('/exports/kafeels',[ExportsController::class,'kafeels'])->name('export.kafeels');
+    Route::get('/exports/installment_requests',[ExportsController::class,'installment_requests'])->name('export.installment_requests');
+    Route::get('/exports/installments',[ExportsController::class,'installments'])->name('export.installments');
 });

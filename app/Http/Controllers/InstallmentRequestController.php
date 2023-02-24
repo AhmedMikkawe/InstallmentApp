@@ -108,8 +108,7 @@ class InstallmentRequestController extends Controller
         return view("admin.installments.index",['installments'=>$installments]);
     }
     public function showInstallmentRequest($id){
-        $request = InstallmentRequest::with(['users','installments'])->where('id',$id)->get();
-        dd($request);
+        $request = InstallmentRequest::with(['user','installments'])->where('id',$id)->first();
         return view("admin.installments.show",['request'=>$request]);
     }
     public function editInstallmentRequest($id){

@@ -103,3 +103,15 @@
     </section>
     <!-- /.content -->
 @endsection
+@section('scripts')
+    <script>
+    $(document).ready(function(){
+        $("#installmentValue").on('keyup',function(){
+            $("#total").val($(this).val() * $("#installmentCount").val());
+        });
+        $("#installmentCount").on('keyup',function(){
+            $("#total").val($(this).val() * $("#installmentValue").val());
+        });
+    });
+    </script>
+@endsection

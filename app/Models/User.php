@@ -49,4 +49,7 @@ class User extends Authenticatable
     public function kafeel(){
         return $this->hasOne(Kafeel::class);
     }
+    public function installment_requests(){
+        return $this->hasMany(InstallmentRequest::class);
+    }
 }

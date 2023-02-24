@@ -123,20 +123,6 @@
                         <p>All Rejected Requests</p>
                     </a>
                 </li>
-
-                <li class="nav-item">
-                <a href="./index2.html" class="nav-link">
-                  <i class="fa fa-credit-card nav-icon"></i>
-                  <p>New Installment</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="./index2.html" class="nav-link">
-                  <i class="fas fa-file-invoice-dollar nav-icon"></i>
-                  <p>New Request</p>
-                </a>
-              </li>
-
             </ul>
           </li>
 
@@ -163,6 +149,43 @@
               </li>
             </ul>
           </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-user-secret nav-icon"></i>
+                    <p>
+                        Exports
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ route("export.users") }}" class="nav-link">
+                            <i class="fas fa-users nav-icon"></i>
+                            <p>Export Users</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route("export.kafeels") }}" class="nav-link">
+                            <i class="fas fa-user-secret nav-icon"></i>
+                            <p>Export Kafeels</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route("export.installment_requests") }}" class="nav-link">
+                            <i class="fas fa-user-secret nav-icon"></i>
+                            <p>Export Installment Requests</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route("export.installments") }}" class="nav-link">
+                            <i class="fas fa-user-secret nav-icon"></i>
+                            <p>Export Installments</p>
+                        </a>
+                    </li>
+
+
+                </ul>
+            </li>
 
         </ul>
       </nav>

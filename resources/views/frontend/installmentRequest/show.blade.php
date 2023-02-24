@@ -79,6 +79,7 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Date</th>
                                 <th scope="col">Status</th>
+                                <th scope="col">Value</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -94,6 +95,7 @@
                                         ">{{$installment->installment_status}}
                                         </span>
                                     </td>
+                                    <td>{{$installment->value}}</td>
                                 </tr>
 
                             @endforeach

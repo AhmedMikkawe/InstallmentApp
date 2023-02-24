@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Dashboard</h1>
+                    <h1 class="m-0">Installment Requests</h1>
                 </div><!-- /.col -->
 
             </div><!-- /.row -->
@@ -31,6 +31,7 @@
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
+                                <th scope="col">User Name</th>
                                 <th scope="col">Device</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Type</th>
@@ -41,11 +42,15 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @php $counter =1 @endphp
                             @foreach($installments as $installment)
                                 <tr>
-                                    <th scope="row">{{$counter++}}</th>
-                                    <td>{{$installment->required_device}}</td>
+                                    <th scope="row">{{$installment->id}}</th>
+                                    <td>{{$installment->user->username}}</td>
+                                    <td>
+                                        <a href="{{route("certainRequest",$installment->id)}}">
+                                            {{$installment->required_device}}
+                                        </a>
+                                    </td>
                                     <td>
                                         <span class="badge
                                         @if($installment->request_status == 'approved') badge-success @endif
@@ -67,9 +72,6 @@
                                     <td>{{$installment->installment_count}}</td>
                                     <td>{{$installment->total}}</td>
                                     <td>
-                                        <a class="btn btn-success btn-sm" href="{{route("certainRequest",$installment->id)}}">
-                                            <i class="fas fa-eye"></i>
-                                        </a>
                                         <a class="btn btn-warning btn-sm" href="{{route("editCertainRequest",$installment->id)}}">
                                             <i class="fas fa-edit"></i>
                                         </a>
