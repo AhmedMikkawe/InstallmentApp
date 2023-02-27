@@ -11,11 +11,18 @@ class LoginController extends Controller
         return view("auth.login");
     }
     function store(Request $request){
+        $login_type = filter_var(request()->input('email'), FILTER_VALIDATE_EMAIL)
+            ? 'email'
+            : 'phone-number';
+
         $this->validate($request,[
-            "email"=>"email|required",
+            "email"=>"required",
             "password"=>"required",
         ]);
-        if(!auth()->attempt($request->only("email","password"))){
+        if(!auth()->attempt([
+            "$login_type"=>$request->email,
+            'password'=>$request->password
+        ])){
             return back()->with("status", "Invalid Login Details");
         }
         if (auth()->user()->hasRole('super-admin')){
@@ -23,4 +30,5 @@ class LoginController extends Controller
         }
         return redirect()->route("home");
     }
+
 }

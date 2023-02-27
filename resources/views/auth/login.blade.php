@@ -38,7 +38,7 @@
 
                     <div class="form-group">
                       <label for="exampleInputEmail1">Email address</label>
-                      <input name="email" type="email" class="form-control @error("email")
+                      <input name="email" type="text" class="form-control @error("email")
                           is-invalid
                       @enderror" id="exampleInputEmail1" placeholder="Enter email" value="{{ old("email") }}">
                       @error("email")

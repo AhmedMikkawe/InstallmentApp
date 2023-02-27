@@ -18,11 +18,11 @@ class RegisterController extends Controller
         $this->validate($request,[
             "username"=>"min:3|max:20|required|unique:users",
             "fullname"=> "required|max:120|min:10",
-            "email"=>"email|required|unique:users",
+            "email"=>"required_without:phone-number|unique:users",
             "password"=>"required|confirmed",
             "nationalId"=>"required|unique:users",
             "nationalId-photo"=>"required|image|mimes:jpg,png,jpeg",
-            "phone-number"=>"required|min:6|unique:users"
+            "phone-number"=>"required_without:email|unique:users"
         ]);
         $inviteCode = InviteCode::where('code', $request->code)->get();
         if(!$inviteCode->first() || !$inviteCode->first()->valid){
