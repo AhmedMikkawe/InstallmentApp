@@ -13,6 +13,8 @@
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset("assets/css/adminlte.min.css") }}">
+
+    <link rel="stylesheet" href="{{ asset("assets/css/main.css") }}">
 @yield("styles")
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -28,7 +30,7 @@
       <div class="col-md-6 mx-auto">
           <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Login</h3>
+                <h3 class="card-title w-100">تسجيل الدخول</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -37,7 +39,7 @@
                 <div class="card-body">
 
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Email address</label>
+                      <label for="exampleInputEmail1">البريد الإلكتروني أو الهاتف المحمول</label>
                       <input name="email" type="text" class="form-control @error("email")
                           is-invalid
                       @enderror" id="exampleInputEmail1" placeholder="Enter email" value="{{ old("email") }}">
@@ -48,7 +50,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputPassword1">Password</label>
+                      <label for="exampleInputPassword1">كلمة المرور</label>
                       <input name="password" type="password" class="form-control @error("password")
                       is-invalid
                       @enderror" id="exampleInputPassword1" placeholder="Password">
@@ -71,7 +73,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary">إرسال</button>
                 </div>
               </form>
             </div>

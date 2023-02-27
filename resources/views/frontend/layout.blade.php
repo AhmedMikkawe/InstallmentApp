@@ -13,6 +13,8 @@
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset("assets/css/adminlte.min.css") }}">
+
+    <link rel="stylesheet" href="{{ asset("assets/css/main.css") }}">
 @yield("styles")
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -34,13 +36,13 @@
 
     </ul>
     @guest
-    <div class="ml-auto d-flex">
+    <div class="mr-auto d-flex">
       <a class="btn btn-success mr-2" href="{{ route("auth.register") }}">Register</a>
       <a class="btn btn-warning" href="{{ route("auth.login") }}">Login</a>
     </div>
     @endguest
     @auth
-    <form action="{{ route('auth.logout') }}" method="POST" class="ml-auto">
+    <form action="{{ route('auth.logout') }}" method="POST" class="mr-auto">
         @csrf
         <input type="submit" class="btn btn-danger" value="Logout">
         </form>

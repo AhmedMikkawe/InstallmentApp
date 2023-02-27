@@ -13,6 +13,8 @@
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset("assets/css/adminlte.min.css") }}">
+
+    <link rel="stylesheet" href="{{ asset("assets/css/main.css") }}">
 @yield("styles")
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -28,7 +30,7 @@
       <div class="col-md-6 mx-auto">
           <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Register</h3>
+                <h3 class="card-title w-100">التسجيل</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -43,7 +45,7 @@
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="username">user Name</label>
+                        <label for="username">اسم المستخدم</label>
                         <input name="username" type="text" class="form-control
                         @error("username")
                             is-invalid
@@ -55,7 +57,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Email address</label>
+                      <label for="exampleInputEmail1">البريد الإلكتروني</label>
                       <input name="email" type="email" class="form-control @error("email")
                           is-invalid
                       @enderror" id="exampleInputEmail1" placeholder="Enter email" value="{{ old("email") }}">
@@ -66,7 +68,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputPassword1">Password</label>
+                      <label for="exampleInputPassword1">كلمة المرور</label>
                       <input name="password" type="password" class="form-control @error("password")
                       is-invalid
                       @enderror" id="exampleInputPassword1" placeholder="Password">
@@ -77,7 +79,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputPassword2">Password Confirmation</label>
+                      <label for="exampleInputPassword2">تأكيد كلمة المرور</label>
                       <input name="password_confirmation" type="password" class="form-control @error("password")
                       is-invalid
                       @enderror" id="exampleInputPassword2" placeholder="Password Confirmation">
@@ -89,7 +91,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="fullname">Full Name</label>
+                        <label for="fullname">الاسم بالكامل</label>
                         <input name="fullname" type="text" class="form-control @error("fullname")
                         is-invalid
                         @enderror" id="fullname" placeholder="Enter Your Full Name" value="{{ old("fullname") }}">
@@ -100,7 +102,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="phone-number">Phone Number</label>
+                        <label for="phone-number">رقم الهاتف المحمول</label>
                         <input name="phone-number" type="text" class="form-control @error("phone-number")
                             is-invalid
                         @enderror" id="phone-number" placeholder="phone number" value="{{ old("phone-number") }}">
@@ -112,7 +114,7 @@
                       </div>
 
                   <div class="form-group">
-                    <label for="nationalId">National ID</label>
+                    <label for="nationalId">رقم البطاقة القومية</label>
                     <input name="nationalId" type="text" class="form-control @error("nationalId")
                     is-invalid
                     @enderror" id="nationalId" placeholder="Enter National ID" value="{{ old("nationalId") }}">
@@ -123,7 +125,7 @@
                         @enderror
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputFile">National ID Photo</label>
+                    <label for="exampleInputFile">صورة البطاقة القومية</label>
                     <div class="input-group">
                       <div class="custom-file">
                         <input name="nationalId-photo" type="file" id="exampleInputFile" accept="image/*">
@@ -140,7 +142,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary">إرسال</button>
                 </div>
               </form>
             </div>
