@@ -37,14 +37,14 @@
     </ul>
     @guest
     <div class="mr-auto d-flex">
-      <a class="btn btn-success mr-2" href="{{ route("auth.register") }}">Register</a>
-      <a class="btn btn-warning" href="{{ route("auth.login") }}">Login</a>
+      <a class="btn btn-success mr-2" href="{{ route("auth.register") }}">تسجيل</a>
+      <a class="btn btn-warning" href="{{ route("auth.login") }}">دخول</a>
     </div>
     @endguest
     @auth
     <form action="{{ route('auth.logout') }}" method="POST" class="mr-auto">
         @csrf
-        <input type="submit" class="btn btn-danger" value="Logout">
+        <input type="submit" class="btn btn-danger" value="خروج">
         </form>
     @endauth
 
@@ -94,7 +94,7 @@
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-user"></i>
                     <p>
-                        Kafeel Information
+                        معلومات الكفيل
                         <i class="right fas fa-angle-left"></i>
                     </p>
                 </a>
@@ -103,7 +103,7 @@
                         <li class="nav-item">
                             <a href="{{route("kafeel.create")}}" class="nav-link">
                                 <i class="fas fa-user nav-icon"></i>
-                                <p>Add Kafeel</p>
+                                <p>أضف كفيل</p>
                             </a>
                         </li>
                     @endif
@@ -112,7 +112,7 @@
 
                                 <a href="{{ route("kafeel.edit",auth()->user()->id) }}" class="nav-link">
                                     <i class="fas fa-user nav-icon"></i>
-                                    <p>Update Kafeel</p>
+                                    <p>تعديل معلومات الكفيل</p>
                                 </a>
                             </li>
                         @endif
@@ -124,7 +124,7 @@
             <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-dollar-sign"></i>
               <p>
-                Installments
+                الأقساط
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -132,13 +132,13 @@
               <li class="nav-item">
                 <a href="{{route('installmentRequest.index')}}" class="nav-link">
                     <i class="fas fa-money-check-alt nav-icon"></i>
-                  <p>All Installments</p>
+                  <p>جميع الأقساط</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{ route('installmentRequest.create') }}" class="nav-link">
                   <i class="fas fa-file-invoice-dollar nav-icon"></i>
-                  <p>New Request</p>
+                  <p>طلب جديد</p>
                 </a>
               </li>
 

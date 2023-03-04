@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Add Your Kafeel Information</h1>
+                    <h1 class="m-0">أضف معلومات الكفيل</h1>
                 </div><!-- /.col -->
 
             </div><!-- /.row -->
@@ -21,7 +21,7 @@
                 <div class="col-12">
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Kafeel Information</h3>
+                            <h3 class="card-title">معلومات الكفيل</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
@@ -30,7 +30,7 @@
                             <input type="hidden" name="user_id" value="{{$user_id}}">
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="kafeelFullName">Full Name</label>
+                                    <label for="kafeelFullName">الاسم بالكامل</label>
                                     <input name="fullname" type="text" class="form-control" id="kafeelFullName" placeholder="Enter Full Name" value="{{old("fullname")}}">
                                     @error("fullname")
                                     <div class="text-danger">
@@ -40,7 +40,7 @@
 
                                 </div>
                                 <div class="form-group">
-                                    <label for="kafeelPhoneNumber">Phone Number</label>
+                                    <label for="kafeelPhoneNumber">رقم المحمول</label>
                                     <input name="phone_number" type="text" class="form-control" id="kafeelPhoneNumber" placeholder="Phone Number" value="{{old("phone_number")}}">
                                     @error("phone_number")
                                     <div class="text-danger">
@@ -50,7 +50,7 @@
 
                                 </div>
                                 <div class="form-group">
-                                    <label for="kafeelNationalId">National ID</label>
+                                    <label for="kafeelNationalId">رقم الهوية الوطنية</label>
                                     <input name="national_id" type="text" class="form-control" id="kafeelNationalId" placeholder="National ID" value="{{old("national_id")}}">
                                     @error("national_id")
                                     <div class="text-danger">
@@ -61,7 +61,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="kafeelNationalIdPhoto">National ID Photo</label>
+                                    <label for="kafeelNationalIdPhoto">صورة الهوية الوطنية</label>
                                     <div class="input-group">
                                         <div class="custom-file">
                                             <input name="national_id_photo" type="file" id="kafeelNationalIdPhoto">
@@ -78,7 +78,7 @@
                             <!-- /.card-body -->
 
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary">إرسال</button>
                             </div>
                         </form>
                     </div>

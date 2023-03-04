@@ -5,16 +5,16 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0">Dashboard</h1>
+              <h1 class="m-0">لوحة التحكم</h1>
             </div><!-- /.col -->
 
           </div><!-- /.row -->
             <div class="row">
                 <div class="col-12">
                     <div class="alert alert-secondary" role="alert">
-                        Hello, {{auth()->user()->fullname}}
-                        on this page you will find imporant alerts,
-                        please go to sidebar to create a new request, pay existing installment or update kafeel information
+                        مرحبا, {{auth()->user()->fullname}}
+                        في هذه الصفحة تجد التنبيهات المهمة,
+                        من فضلك اذهب الى البار الجانبي لإضافة طلب جديد, أو دفع قسط جديد أو تحديث معلومات الكفيل
                     </div>
 
                 </div>

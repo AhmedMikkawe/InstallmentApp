@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Installment Requests</h1>
+                    <h1 class="m-0">طلبات الأقساط</h1>
                 </div><!-- /.col -->
 
             </div><!-- /.row -->
@@ -20,7 +20,7 @@
                 <div class="col-12">
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Installment for {{$request->required_device}}</h3>
+                            <h3 class="card-title">قسط {{$request->required_device}}</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
@@ -28,7 +28,7 @@
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="value">Installment Value</label>
+                                    <label for="value">قيمة القسط</label>
                                     <input name="value" type="text" class="form-control" id="value" placeholder="Enter Installment Value" value="@if(old("value") == null) {{ $request->installment_value}}@endif @if(old("value")) {{old("value")}}@endif">
                                     @error("value")
                                     <div class="text-danger">
@@ -38,14 +38,14 @@
 
                                 </div>
                                 <div class="form-group">
-                                    <label for="receipt_photo">Receipt Photo</label>
+                                    <label for="receipt_photo">صورة الوصل</label>
                                     <input name="receipt_photo" type="file" class="form-control" id="receipt_photo" accept="image/*">
                                 </div>
                             </div>
                             <!-- /.card-body -->
 
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary">إرسال</button>
                             </div>
                         </form>
                     </div>
@@ -77,9 +77,9 @@
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Date</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Value</th>
+                                <th scope="col">التاريخ</th>
+                                <th scope="col">الحالة</th>
+                                <th scope="col">القيمة</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -105,7 +105,7 @@
                     @endif
                     @if(count($request->installments) == 0)
                         <div class="alert alert-warning" role="alert">
-                            <p>you didn't pay installments yet</p>
+                            <p>ليس لديك أقساط حتى الآن</p>
                         </div>
 
                     @endif
