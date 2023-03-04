@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Dashboard</h1>
+                    <h1 class="m-0">لوحة التحكم</h1>
                 </div><!-- /.col -->
 
             </div><!-- /.row -->
@@ -21,7 +21,7 @@
                 <div class="col-12">
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Installment Request Information</h3>
+                            <h3 class="card-title">معلومات طلب التقسيط</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
@@ -29,7 +29,7 @@
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="requiredDevice">Product Name</label>
+                                    <label for="requiredDevice">اسم المنتج</label>
                                     <input name="required_device" type="text" class="form-control" id="requiredDevice" placeholder="Enter Required Device" value="{{$request->required_device}}">
                                     @error("required_device")
                                     <div class="text-danger">
@@ -39,7 +39,7 @@
 
                                 </div>
                                 <div class="form-group">
-                                    <label for="requestType">Request Type</label>
+                                    <label for="requestType">نوع الطلب</label>
                                     <select class="custom-select" name="request_type" id="requestType">
                                         <option value="monthly" @if($request->request_type == 'monthly') selected @endif>monthly</option>
                                         <option value="3 months" @if($request->request_type == '3 months') selected @endif>3 months</option>
@@ -48,7 +48,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="requestStatus">Request Status</label>
+                                    <label for="requestStatus">حالة الطلب</label>
                                     <select class="custom-select" name="request_status" id="requestStatus">
                                         <option value="pending" @if($request->request_status == 'pending') selected @endif>pending</option>
                                         <option value="approved" @if($request->request_status == 'approved') selected @endif>approved</option>
@@ -56,7 +56,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="installmentValue">Installment Value</label>
+                                    <label for="installmentValue">قيمة الطلب</label>
                                     <input name="installment_value" type="text" class="form-control" id="installmentValue" placeholder="Enter Value" value="{{$request->installment_value}}">
                                     @error("installment_value")
                                     <div class="text-danger">
@@ -66,7 +66,7 @@
 
                                 </div>
                                 <div class="form-group">
-                                    <label for="installmentCount">Installment Count</label>
+                                    <label for="installmentCount">عدد الأقساط</label>
                                     <input name="installment_count" type="text" class="form-control" id="installmentCount" placeholder="Enter Count" value="{{$request->installment_count}}">
                                     @error("installment_count")
                                     <div class="text-danger">
@@ -76,7 +76,7 @@
 
                                 </div>
                                 <div class="form-group">
-                                    <label for="total">Total</label>
+                                    <label for="total">المجموع</label>
                                     <input name="total" type="text" class="form-control" id="total" placeholder="" value="{{$request->total}}">
                                     @error("total")
                                     <div class="text-danger">
@@ -91,7 +91,7 @@
                             <!-- /.card-body -->
 
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary">إرسال</button>
                             </div>
                         </form>
                     </div>

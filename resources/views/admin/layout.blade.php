@@ -37,14 +37,14 @@
     </ul>
     @guest
     <div class="mr-auto d-flex">
-      <a class="btn btn-success mr-2" href="{{ route("auth.register") }}">Register</a>
-      <a class="btn btn-warning" href="{{ route("auth.login") }}">Login</a>
+      <a class="btn btn-success mr-2" href="{{ route("auth.register") }}">تسجيل</a>
+      <a class="btn btn-warning" href="{{ route("auth.login") }}">دخول</a>
     </div>
     @endguest
     @auth
     <form action="{{ route('auth.logout') }}" method="POST" class="mr-auto">
         @csrf
-        <input type="submit" class="btn btn-danger" value="Logout">
+        <input type="submit" class="btn btn-danger" value="خروج">
         </form>
     @endauth
 
@@ -94,7 +94,7 @@
             <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-dollar-sign"></i>
               <p>
-                Installments
+                الأقساط
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -102,33 +102,33 @@
               <li class="nav-item">
                 <a href="{{route("allInstallmentRequests")}}" class="nav-link">
                     <i class="fas fa-money-check-alt nav-icon"></i>
-                  <p>All Requests</p>
+                  <p>جميع الطلبات</p>
                 </a>
               </li>
                 <li class="nav-item">
                     <a href="{{route("allPendingInstallmentRequests")}}" class="nav-link">
                         <i class="fas fa-money-check-alt nav-icon"></i>
-                        <p>All Pending Requests</p>
+                        <p>الطلبات المنتظرة</p>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a href="{{route("allApprovedInstallmentRequests")}}" class="nav-link">
                         <i class="fas fa-money-check-alt nav-icon"></i>
-                        <p>All Approved Requests</p>
+                        <p>الطلبات الموافق عليها</p>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a href="{{route("allRejectedInstallmentRequests")}}" class="nav-link">
                         <i class="fas fa-money-check-alt nav-icon"></i>
-                        <p>All Rejected Requests</p>
+                        <p>الطلبات المرفوضة</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{route("adminAddInstallmentRequest")}}" class="nav-link">
                         <i class="fas fa-money-check-alt nav-icon"></i>
-                        <p>Add Installment Request</p>
+                        <p>اضف طلب تقسيط</p>
                     </a>
                 </li>
 
@@ -139,7 +139,7 @@
             <a href="#" class="nav-link">
                 <i class="fas fa-user-secret nav-icon"></i>
               <p>
-                Invite Codes
+                أكواد الدعوة
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -147,13 +147,13 @@
               <li class="nav-item">
                 <a href="{{ route("invite_code.index") }}" class="nav-link">
                     <i class="fas fa-users nav-icon"></i>
-                  <p>All Codes</p>
+                  <p>جميع الأكواد</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{ route("invite_code.create") }}" class="nav-link">
                   <i class="fas fa-user-secret nav-icon"></i>
-                  <p>New Code</p>
+                  <p>كود جديد</p>
                 </a>
               </li>
             </ul>
@@ -162,7 +162,7 @@
                 <a href="#" class="nav-link">
                     <i class="fas fa-user-secret nav-icon"></i>
                     <p>
-                        Exports
+                        التصديرات
                         <i class="right fas fa-angle-left"></i>
                     </p>
                 </a>
@@ -170,25 +170,25 @@
                     <li class="nav-item">
                         <a href="{{ route("export.users") }}" class="nav-link">
                             <i class="fas fa-users nav-icon"></i>
-                            <p>Export Users</p>
+                            <p>تصدير المستخدمين</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route("export.kafeels") }}" class="nav-link">
                             <i class="fas fa-user-secret nav-icon"></i>
-                            <p>Export Kafeels</p>
+                            <p>تصدير الكفلاء</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route("export.installment_requests") }}" class="nav-link">
                             <i class="fas fa-user-secret nav-icon"></i>
-                            <p>Export Installment Requests</p>
+                            <p>تصدير طلبات التقسيط</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route("export.installments") }}" class="nav-link">
                             <i class="fas fa-user-secret nav-icon"></i>
-                            <p>Export Installments</p>
+                            <p>تصدير الاقساط</p>
                         </a>
                     </li>
 

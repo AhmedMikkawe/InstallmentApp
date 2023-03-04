@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Installments for user {{$installment->installment_request->user->username}}</h1>
+                    <h1 class="m-0">الأقساط الخاصة بـ {{$installment->installment_request->user->username}}</h1>
                 </div><!-- /.col -->
 
             </div><!-- /.row -->
@@ -23,7 +23,7 @@
                 <div class="col-12">
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Installment for {{$installment->installment_request->required_device}}</h3>
+                            <h3 class="card-title">قسط {{$installment->installment_request->required_device}}</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
@@ -31,7 +31,7 @@
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="value">Installment Value</label>
+                                    <label for="value">قيمة القسط</label>
                                     <input name="value" type="text" class="form-control" id="value" placeholder="Enter Installment Value" value="{{$installment->value}}">
                                     @error("value")
                                     <div class="text-danger">
@@ -41,11 +41,11 @@
 
                                 </div>
                                 <div class="form-group">
-                                    <label for="installmentStatus">Installment Status</label>
+                                    <label for="installmentStatus">حالة القسط</label>
                                     <select class="custom-select" name="installment_status" id="installmentStatus">
-                                        <option value="approved" @if($installment->installment_status == 'approved') selected @endif>Approved</option>
-                                        <option value="pending" @if($installment->installment_status == 'pending') selected @endif>Pending</option>
-                                        <option value="rejected" @if($installment->installment_status == 'rejected') selected @endif>Rejected</option>
+                                        <option value="approved" @if($installment->installment_status == 'approved') selected @endif>موافق عليه</option>
+                                        <option value="pending" @if($installment->installment_status == 'pending') selected @endif>تحت الانتظار</option>
+                                        <option value="rejected" @if($installment->installment_status == 'rejected') selected @endif>مرفوض</option>
                                     </select>
                                     @error("installment_status")
                                     <div class="text-danger">
@@ -55,7 +55,7 @@
 
                                 </div>
                                 <div class="form-group">
-                                    <label for="date">Date:</label>
+                                    <label for="date">التاريخ:</label>
                                     <div class="input-group date">
                                         <input type="text" class="form-control"  id="date" name="date" value="{{$installment->date}}"/>
                                         <div class="input-group-append">
@@ -71,7 +71,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="receipt_photo">Receipt Photo</label>
+                                    <label for="receipt_photo">صورة الوصل</label>
                                     @if($installment->receipt_photo)
                                         <img class="img-thumbnail rounded w-25 d-block" src="{{asset("uploads/installment_receipt/$installment->receipt_photo")}}" alt="">
                                     @endif
@@ -88,7 +88,7 @@
                             <!-- /.card-body -->
 
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary">إرسال</button>
                             </div>
                         </form>
                     </div>

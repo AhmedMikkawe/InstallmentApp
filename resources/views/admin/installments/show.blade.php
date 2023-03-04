@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Installments for user {{$request->user->username}}</h1>
+                    <h1 class="m-0">الأقساط الخاصة بـ {{$request->user->username}}</h1>
                 </div><!-- /.col -->
 
             </div><!-- /.row -->
@@ -23,7 +23,7 @@
                 <div class="col-12">
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Installment for {{$request->required_device}}</h3>
+                            <h3 class="card-title">قسط {{$request->required_device}}</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
@@ -31,7 +31,7 @@
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="value">Installment Value</label>
+                                    <label for="value">قيمة القسط</label>
                                     <input name="value" type="text" class="form-control" id="value" placeholder="Enter Installment Value" value="@if(old("value") == null) {{ $request->installment_value}}@endif @if(old("value")) {{old("value")}}@endif">
                                     @error("value")
                                     <div class="text-danger">
@@ -41,11 +41,11 @@
 
                                 </div>
                                 <div class="form-group">
-                                <label for="installmentStatus">Installment Status</label>
+                                <label for="installmentStatus">حالة القسط</label>
                                     <select class="custom-select" name="installment_status" id="installmentStatus">
-                                        <option value="approved">Approved</option>
-                                        <option value="pending">Pending</option>
-                                        <option value="rejected">Rejected</option>
+                                        <option value="approved">موافق عليه</option>
+                                        <option value="pending">تحت الانتظار</option>
+                                        <option value="rejected">مرفوض</option>
                                     </select>
                                 @error("installment_status")
                                 <div class="text-danger">
@@ -55,7 +55,7 @@
 
                             </div>
                                 <div class="form-group">
-                                    <label for="date">Date:</label>
+                                    <label for="date">التاريخ:</label>
                                     <div class="input-group date">
                                         <input type="text" class="form-control"  id="date" name="date"/>
                                         <div class="input-group-append">
@@ -71,7 +71,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="receipt_photo">Receipt Photo</label>
+                                    <label for="receipt_photo">صورة الوصل</label>
                                     <input name="receipt_photo" type="file" class="form-control" id="receipt_photo" accept="image/*">
                                     @error("receipt_photo")
                                     <div class="text-danger">
@@ -84,7 +84,7 @@
                             <!-- /.card-body -->
 
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary">إرسال</button>
                             </div>
                         </form>
                     </div>
@@ -116,10 +116,10 @@
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Date</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Value</th>
-                                <th scope="col">Actions</th>
+                                <th scope="col">التاريخ</th>
+                                <th scope="col">الحالة</th>
+                                <th scope="col">القيمة</th>
+                                <th scope="col">الإجراءات</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -140,8 +140,8 @@
                                         <form action="{{route('adminDeleteInstallment',['id'=>$installment->installment_request->id, 'id2'=>$installment->id])}}" method="post">
                                             @method('delete')
                                             @csrf
-                                            <a class="btn btn-warning" href="{{route("adminEditInstallment",['id'=>$installment->installment_request->id,'id2'=>$installment->id])}}">Edit</a>
-                                            <input class="btn btn-danger" type="submit" value="delete">
+                                            <a class="btn btn-warning" href="{{route("adminEditInstallment",['id'=>$installment->installment_request->id,'id2'=>$installment->id])}}">تعديل</a>
+                                            <input class="btn btn-danger" type="submit" value="حذف">
                                         </form>
 
                                     </td>
@@ -151,9 +151,9 @@
                             </tbody>
                             <tfoot class="bg-dark">
                             <tr>
-                                <th scope="row">Paid</th>
+                                <th scope="row">المدفوع</th>
                                 <td> {{ $request->installments->where('installment_status','approved')->sum('value') }}</td>
-                                <th scope="row">Remains</th>
+                                <th scope="row">المتبقي</th>
                                 <td> {{ $request->total - $request->installments->where('installment_status','approved')->sum('value') }}</td>
                                 <td></td>
                             </tr>
@@ -164,7 +164,7 @@
                     @endif
                     @if(count($request->installments) == 0)
                         <div class="alert alert-warning" role="alert">
-                            <p>you didn't pay installments yet</p>
+                            <p>لم تدفع اقساط حتى الآن</p>
                         </div>
 
                     @endif

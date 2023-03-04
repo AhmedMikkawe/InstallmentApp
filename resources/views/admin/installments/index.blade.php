@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Installment Requests</h1>
+                    <h1 class="m-0">طلبات الأقساط</h1>
                 </div><!-- /.col -->
 
             </div><!-- /.row -->
@@ -31,14 +31,14 @@
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">User Name</th>
-                                <th scope="col">Device</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Type</th>
-                                <th scope="col">Value</th>
-                                <th scope="col">Installments Count</th>
-                                <th scope="col">Total</th>
-                                <th scope="col">Actions</th>
+                                <th scope="col">اسم المستخدم</th>
+                                <th scope="col">المنتج</th>
+                                <th scope="col">الحالة</th>
+                                <th scope="col">النوع</th>
+                                <th scope="col">القيمة</th>
+                                <th scope="col">عدد الأقساط</th>
+                                <th scope="col">المجموع</th>
+                                <th scope="col">الاجراءات</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -85,7 +85,7 @@
                     @endif
                     @if(count($installments) == 0)
                         <div class="alert alert-warning" role="alert">
-                            <p>you don't have any requests yet</p>
+                            <p>ليس لديك طلبات حتى الآن</p>
                         </div>
 
                     @endif

@@ -5,7 +5,7 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0">Dashboard</h1>
+              <h1 class="m-0">لوحة التحكم</h1>
             </div><!-- /.col -->
 
           </div><!-- /.row -->
@@ -29,9 +29,9 @@
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Code</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Actions</th>
+                    <th scope="col">الكود</th>
+                    <th scope="col">الحالة</th>
+                    <th scope="col">الاجراءات</th>
                   </tr>
                 </thead>
                 <tbody>
