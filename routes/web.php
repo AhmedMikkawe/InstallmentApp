@@ -10,6 +10,7 @@ use App\Http\Controllers\InstallmentController;
 use App\Http\Controllers\InstallmentRequestController;
 use App\Http\Controllers\InviteCodeController;
 use App\Http\Controllers\KafeelController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -76,4 +77,7 @@ Route::group(['prefix'=>"admin","middleware"=>["auth","role:super-admin"]],funct
     Route::get('/exports/kafeels',[ExportsController::class,'kafeels'])->name('export.kafeels');
     Route::get('/exports/installment_requests',[ExportsController::class,'installment_requests'])->name('export.installment_requests');
     Route::get('/exports/installments',[ExportsController::class,'installments'])->name('export.installments');
+    /*Edit Profile*/
+    Route::get("/profile/edit",[ProfileController::class, 'edit'])->name('profile.edit');
+    Route::post("/profile/edit",[ProfileController::class, 'update'])->name('profile.update');
 });
