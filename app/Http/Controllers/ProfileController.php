@@ -23,4 +23,17 @@ class ProfileController extends Controller
         }
      return redirect()->route('profile.edit')->with('updated','تم تغيير البيانات بنجاح');
     }
+    function changePassword(Request $request){
+        $user = User::where('id',auth()->user()->id)->firstOrFail();
+        $this->validate($request,[
+            "password"=>"required",
+            "newPassword"=>"required|confirmed"
+        ]);
+        if(Hash::check($request->password,$user->password)){
+            $user->update([
+                "password"=> Hash::make($request->newPassword)
+            ]);
+        }
+        return redirect()->route("profile.edit")->with("updated","تم تغيير كلمة السر بنجاح");
+    }
 }
