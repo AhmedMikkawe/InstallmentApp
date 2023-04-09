@@ -46,7 +46,7 @@ Route::group(["prefix"=>"/"],function(){
     Route::post("installments/{id}",[InstallmentController::class, 'store'])->middleware("auth")->name("installment.store");
 
 });
-Route::group(['prefix'=>"admin","middleware"=>["auth","role:super-admin"]],function(){
+Route::group(['prefix'=>"admin","middleware"=>["auth","role:super-admin|moderator"]],function(){
     Route::get('/',[AdminController::class,'index'])->name("admin");
     Route::get("/invite_code", [InviteCodeController::class, 'index'])->name("invite_code.index");
 

@@ -158,6 +158,7 @@
               </li>
             </ul>
           </li>
+            @hasrole('super-admin')
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     <i class="fas fa-user-secret nav-icon"></i>
@@ -195,6 +196,8 @@
 
                 </ul>
             </li>
+            @endhasrole()
+
 
         </ul>
       </nav>
