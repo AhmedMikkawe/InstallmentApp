@@ -89,7 +89,7 @@
 
                     </div>
                     <div class="form-group">
-                        <label for="invText">Example textarea</label>
+                        <label for="invText">نص الدعوة</label>
                         <textarea class="form-control" id="invText" rows="3">
                             الرجاء استخدام هذا الرابط اثناء التسجيل
                         </textarea>
@@ -113,7 +113,7 @@
              let incode = $('#invCode').val(e.relatedTarget.attributes[4].textContent);
             let phone = $("#phone").val("");
             let tex = $("#invText").val("الرجاء استخدام هذا الرابط اثناء التسجيل:");
-            $("#invText").val( tex.val() + " " + "{{url('/?code=')}}" + incode.val());
+            $("#invText").val( tex.val() + " " + "{{url('/register?code=')}}" + incode.val());
 
         })
         $("#send-invite").on('click',function(e){

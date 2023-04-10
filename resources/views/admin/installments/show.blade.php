@@ -155,12 +155,53 @@
                                 <td> {{ $request->installments->where('installment_status','approved')->sum('value') }}</td>
                                 <th scope="row">المتبقي</th>
                                 <td> {{ $request->total - $request->installments->where('installment_status','approved')->sum('value') }}</td>
-                                <td></td>
+                                <td>
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#whatsapp-modal"
+                                            data-remains-installment="{{ $request->total - $request->installments->where('installment_status','approved')->sum('value') }}"
+                                    >
+                                        أرسل تذكير بالدفع عن طريق واتساب
+                                    </button>
+                                </td>
                             </tr>
 
                             </tfoot>
                         </table>
+                        <div class="modal fade" id="whatsapp-modal" tabindex="-1" role="dialog" aria-labelledby="share code to whatsapp" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
 
+                                        <h5 class="modal-title" id="whatsapp-modal-title">إرسال تذكير على واتس اب</h5>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="phone">رقم الهاتف</label>
+                                            <input type="tel" class="form-control" id="phone" value="{{$request->user->phone_number}}">
+
+                                            <small class="form-text text-muted">
+                                                اكتب رقم الهاتف كامل بمفتاح الدولة ولكن بدون علامة (+)
+                                            </small>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="invText">رسالة التذكير</label>
+                                            <textarea class="form-control" id="invText" rows="3">
+                            الرجاء دفع الاقساط المتبقية والتي تبلغ
+                                                {{ $request->total - $request->installments->where('installment_status','approved')->sum('value') }}
+                        </textarea>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <a id="send-invite" href="#" class="btn btn-success btn-block" target="_blank">إرسال</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     @endif
                     @if(count($request->installments) == 0)
                         <div class="alert alert-warning" role="alert">
@@ -183,7 +224,21 @@
         $(function(){
             $('#date').datepicker({ dateFormat: 'yy-mm-dd' });
         })
+        $('#whatsapp-modal').on('shown.bs.modal', function (e) {
+            let remainsInstallment = e.relatedTarget.attributes[4].textContent;
+            let tex = $("#invText").val("الرجاء دفع الأقساط المتبقية والتي تبلغ : ");
+            $("#invText").val( tex.val() + " " + remainsInstallment );
 
+        })
+        $("#send-invite").on('click',function(e){
+            e.preventDefault();
+            const WHATSAPP_LINK = "https://api.whatsapp.com/send";
+            let phone = $("#phone").val();
+            let message = $("#invText").val();
+            let newLink = WHATSAPP_LINK + `?phone=${phone}&text=${message}`;
+            e.target.attributes[1].value = newLink;
+            window.open(newLink,"_blank");
+        });
     </script>
 
 

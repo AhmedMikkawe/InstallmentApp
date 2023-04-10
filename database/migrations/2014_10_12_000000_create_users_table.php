@@ -21,9 +21,9 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->string("nationalId");
-            $table->string("nationalId-photo");
-            $table->string("phone-number")->unique()->nullable();
+            $table->string("nationalId")->unique()->nullable();
+            $table->string("nationalId_photo")->nullable();
+            $table->string("phone_number")->unique()->nullable();
             $table->timestamps();
         });
     }

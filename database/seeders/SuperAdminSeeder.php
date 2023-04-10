@@ -24,8 +24,8 @@ class SuperAdminSeeder extends Seeder
             "email" => "admin@gmail.com",
             "password"=> Hash::make("123456"),
             "nationalId" => "1234567",
-            "nationalId-photo"=>  "",
-            "phone-number"=> "1234567"
+            "nationalId_photo"=>  "",
+            "phone_number"=> "1234567"
         ]);
         $user = User::with('roles')->where('email','admin@gmail.com')->first();
         $user->assignRole('super-admin');

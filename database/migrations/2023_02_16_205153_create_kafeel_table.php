@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('kafeel', function (Blueprint $table) {
             $table->id();
             $table->string("fullname");
-            $table->string("national_id");
-            $table->string("phone_number");
-            $table->string("national_id_photo");
+            $table->string("national_id")->nullable();
+            $table->string("phone_number")->nullable();
+            $table->string("national_id_photo")->nullable();
             $table->foreignId("user_id")->references("id")->on("users")->onDelete('cascade');
             $table->timestamps();
         });
