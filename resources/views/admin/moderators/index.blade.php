@@ -39,7 +39,7 @@
                             <tr>
                                 <th scope="row">{{ $user->id }}</th>
                                 <td>{{ $user->username }}</td>
-                                <td>{{$user->hasRole('super-admin') ? 'مدير' : 'مشرف'}}</td>
+                                <td><span class="badge badge-warning badge-pill">{{$user->hasRole('super-admin') ? 'مدير' : 'مشرف'}}</span></td>
                                 <td>
                                     <a class="btn btn-warning" href="{{ route("moderators.edit",$user->id) }}">Edit</a>
                                 </td>
