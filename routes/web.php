@@ -81,4 +81,5 @@ Route::group(['prefix'=>"admin","middleware"=>["auth","role:super-admin|moderato
     Route::get("/profile/edit",[ProfileController::class, 'edit'])->name('profile.edit');
     Route::post("/profile/edit",[ProfileController::class, 'update'])->name('profile.update');
     Route::post("/profile/changePassword",[ProfileController::class,'changePassword'])->name('changePassword');
+    Route::resource("moderators",'App\Http\Controllers\ModeratorsController');
 });

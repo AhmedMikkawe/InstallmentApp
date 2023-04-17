@@ -99,65 +99,76 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{route("allInstallmentRequests")}}" class="nav-link">
-                    <i class="fas fa-money-check-alt nav-icon"></i>
-                  <p>جميع الطلبات</p>
-                </a>
-              </li>
+                @hasrole('super-admin')
+                <li class="nav-item">
+                    <a href="{{route("allInstallmentRequests")}}" class="nav-link">
+                        <i class="fas fa-money-check-alt nav-icon"></i>
+                        <p>جميع الطلبات</p>
+                    </a>
+                </li>
+                @endhasrole
+
+                @hasanyrole('super-admin|moderator')
                 <li class="nav-item">
                     <a href="{{route("allPendingInstallmentRequests")}}" class="nav-link">
                         <i class="fas fa-money-check-alt nav-icon"></i>
                         <p>الطلبات المنتظرة</p>
                     </a>
                 </li>
-
+                @endhasanyrole
+                @hasrole('super-admin')
                 <li class="nav-item">
                     <a href="{{route("allApprovedInstallmentRequests")}}" class="nav-link">
                         <i class="fas fa-money-check-alt nav-icon"></i>
                         <p>الطلبات الموافق عليها</p>
                     </a>
                 </li>
+                @endhasrole
 
+                @hasrole('super-admin')
                 <li class="nav-item">
                     <a href="{{route("allRejectedInstallmentRequests")}}" class="nav-link">
                         <i class="fas fa-money-check-alt nav-icon"></i>
                         <p>الطلبات المرفوضة</p>
                     </a>
                 </li>
+                @endhasrole
+                @hasrole('super-admin')
                 <li class="nav-item">
                     <a href="{{route("adminAddInstallmentRequest")}}" class="nav-link">
                         <i class="fas fa-money-check-alt nav-icon"></i>
                         <p>اضف طلب تقسيط</p>
                     </a>
                 </li>
-
+                @endhasrole
             </ul>
           </li>
+            @hasrole('super-admin')
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-user-secret nav-icon"></i>
+                    <p>
+                        أكواد الدعوة
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ route("invite_code.index") }}" class="nav-link">
+                            <i class="fas fa-users nav-icon"></i>
+                            <p>جميع الأكواد</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route("invite_code.create") }}" class="nav-link">
+                            <i class="fas fa-user-secret nav-icon"></i>
+                            <p>كود جديد</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            @endhasrole
 
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="fas fa-user-secret nav-icon"></i>
-              <p>
-                أكواد الدعوة
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ route("invite_code.index") }}" class="nav-link">
-                    <i class="fas fa-users nav-icon"></i>
-                  <p>جميع الأكواد</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route("invite_code.create") }}" class="nav-link">
-                  <i class="fas fa-user-secret nav-icon"></i>
-                  <p>كود جديد</p>
-                </a>
-              </li>
-            </ul>
-          </li>
             @hasrole('super-admin')
             <li class="nav-item">
                 <a href="#" class="nav-link">
@@ -190,6 +201,33 @@
                         <a href="{{ route("export.installments") }}" class="nav-link">
                             <i class="fas fa-user-secret nav-icon"></i>
                             <p>تصدير الاقساط</p>
+                        </a>
+                    </li>
+
+
+                </ul>
+            </li>
+            @endhasrole()
+            @hasrole('super-admin')
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-user-secret nav-icon"></i>
+                    <p>
+                        المشرفين
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{route('moderators.index')}}" class="nav-link">
+                            <i class="fas fa-users nav-icon"></i>
+                            <p>جميع المشرفين</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('moderators.create')}}" class="nav-link">
+                            <i class="fas fa-user nav-icon"></i>
+                            <p>أضف مشرف</p>
                         </a>
                     </li>
 

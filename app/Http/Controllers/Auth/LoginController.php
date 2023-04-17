@@ -25,7 +25,7 @@ class LoginController extends Controller
         ])){
             return back()->with("status", "Invalid Login Details");
         }
-        if (auth()->user()->hasRole('super-admin')){
+        if (auth()->user()->hasAnyRole('super-admin','moderator')){
             return redirect()->route("admin");
         }
         return redirect()->route("home");
