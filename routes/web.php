@@ -12,7 +12,8 @@ use App\Http\Controllers\InviteCodeController;
 use App\Http\Controllers\KafeelController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,22 +27,22 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group(["prefix"=>"/"],function(){
-    Route::get("",[HomeController::class, 'index'])->middleware("auth");
-    Route::get("home",[HomeController::class, 'index'])->middleware("auth")->name("home");
+    Route::get("",[HomeController::class, 'index'])->middleware(["auth","verified"]);
+    Route::get("home",[HomeController::class, 'index'])->middleware(["auth","verified"])->name("home");
     Route::get("register", [RegisterController::class, 'index'])->middleware("guest")->name('auth.register');
     Route::post("register", [RegisterController::class, 'store']);
     Route::get("login",[LoginController::class, 'index'])->middleware("guest")->name("auth.login");
     Route::post("login",[LoginController::class, 'store']);
     Route::post("logout",[LogoutController::class, 'store'])->middleware("auth")->name("auth.logout");
     /*Kafeel*/
-    Route::get("kafeel/create",[KafeelController::class, 'create'])->middleware('auth')->name("kafeel.create");
-    Route::post("kafeel/create",[KafeelController::class, 'store'])->middleware('auth');
-    Route::get("kafeel/edit/{id}",[KafeelController::class,'edit'])->middleware('auth')->name("kafeel.edit");
-    Route::post("kafeel/update/{id}",[KafeelController::class,'update'])->middleware('auth')->name("kafeel.update");
+    Route::get("kafeel/create",[KafeelController::class, 'create'])->middleware(["auth","verified"])->name("kafeel.create");
+    Route::post("kafeel/create",[KafeelController::class, 'store'])->middleware(["auth","verified"]);
+    Route::get("kafeel/edit/{id}",[KafeelController::class,'edit'])->middleware(["auth","verified"])->name("kafeel.edit");
+    Route::post("kafeel/update/{id}",[KafeelController::class,'update'])->middleware(["auth","verified"])->name("kafeel.update");
     /*Installment Request*/
-    Route::get("installments",[InstallmentRequestController::class,'index'])->middleware('auth')->name("installmentRequest.index");
-    Route::get('installments/create',[InstallmentRequestController::class,'create'])->middleware('auth')->name("installmentRequest.create");
-    Route::post('installments/create',[InstallmentRequestController::class,'store'])->middleware('auth');
+    Route::get("installments",[InstallmentRequestController::class,'index'])->middleware(["auth","verified"])->name("installmentRequest.index");
+    Route::get('installments/create',[InstallmentRequestController::class,'create'])->middleware(["auth","verified"])->name("installmentRequest.create");
+    Route::post('installments/create',[InstallmentRequestController::class,'store'])->middleware(["auth","verified"]);
     Route::get("installments/{id}",[InstallmentController::class, 'show'])->middleware(["auth","installment_request_is_approved"])->name("installmentRequest.show");
     Route::post("installments/{id}",[InstallmentController::class, 'store'])->middleware("auth")->name("installment.store");
 
@@ -83,3 +84,19 @@ Route::group(['prefix'=>"admin","middleware"=>["auth","role:super-admin|moderato
     Route::post("/profile/changePassword",[ProfileController::class,'changePassword'])->name('changePassword');
     Route::resource("moderators",'App\Http\Controllers\ModeratorsController');
 });
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect('/');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');

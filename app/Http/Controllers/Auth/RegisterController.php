@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\InviteCode;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -28,7 +29,7 @@ class RegisterController extends Controller
         if(!$inviteCode->first() || !$inviteCode->first()->valid){
             return back()->with("status", "Invalid Invite Code");
         }
-        User::create([
+        $user = User::create([
             "fullname" => $request->fullname,
             "username" => $request->username,
             "email" => $request->email,
@@ -42,6 +43,7 @@ class RegisterController extends Controller
         ]);
         $request->file('nationalId-photo')->move(public_path('uploads/customer_nationalId'), $fileName);
         auth()->attempt($request->only("email","password"));
+        event(new Registered($user));
         return redirect()->route("kafeel.create");
     }
 }
