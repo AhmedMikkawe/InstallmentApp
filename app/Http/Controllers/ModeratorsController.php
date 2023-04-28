@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 
 
@@ -24,22 +25,36 @@ class ModeratorsController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {
-        //
+        $roles = Role::all()->pluck("name");
+        return view("admin.moderators.create",['roles'=>$roles]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'username'=> 'required|unique:users',
+            'fullname'=> 'required',
+            'email'=> 'required|email|unique:users',
+            'password'=>'required|confirmed'
+        ]);
+        $user = User::create([
+            "fullname" => $request->fullname,
+            "username" => $request->username,
+            "email" => $request->email,
+            "password"=> Hash::make($request->password),
+        ]);
+        $user->assignRole($request->role);
+        return redirect()->route('moderators.index')->with('success','تم إنشاء المشرف بنجاح');
     }
 
     /**

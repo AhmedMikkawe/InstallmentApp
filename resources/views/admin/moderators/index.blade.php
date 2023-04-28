@@ -54,44 +54,4 @@
 
         </div>
     </section>
-    <div class="modal fade" id="whatsapp-modal" tabindex="-1" role="dialog" aria-labelledby="share code to whatsapp" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-
-                    <h5 class="modal-title" id="whatsapp-modal-title">إرسال كود الدعوة على واتس اب</h5>
-                </div>
-                <div class="modal-body">
-
-                    <div class="form-group">
-                        <label for="invCode">الكود</label>
-                        <input type="email" class="form-control" id="invCode" disabled>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">رقم الهاتف</label>
-                        <input type="tel" class="form-control" id="phone" >
-                        <small class="form-text text-muted">
-                            اكتب رقم الهاتف كامل بمفتاح الدولة ولكن بدون علامة (+)
-                        </small>
-
-                    </div>
-                    <div class="form-group">
-                        <label for="invText">نص الدعوة</label>
-                        <textarea class="form-control" id="invText" rows="3">
-                            الرجاء استخدام هذا الرابط اثناء التسجيل
-                        </textarea>
-                    </div>
-
-                </div>
-
-                <div class="modal-footer">
-                    <a id="send-invite" href="#" class="btn btn-success btn-block" target="_blank">إرسال</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
 @endsection
