@@ -21,6 +21,12 @@
                         </form>
                     </div>
 
+@if(session("message"))
+                        <div class="alert alert-warning">
+                            {{ session("message") }}
+                        </div>
+@endif
+
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -28,14 +34,5 @@
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <section class="content">
-        <div class="container-fluid">
-            <!-- Small boxes (Stat box) -->
-            <div class="row">
-
-            </div>
-            <!-- /.row -->
-        </div><!-- /.container-fluid -->
-    </section>
     <!-- /.content -->
 @endsection
