@@ -76,7 +76,10 @@ class ModeratorsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $mod = User::with("roles")->findOrFail($id);
+        $roles = Role::all()->pluck("name");
+
+        return view("admin.moderators.edit",['mod'=>$mod,"roles"=>$roles]);
     }
 
     /**
@@ -84,11 +87,34 @@ class ModeratorsController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
-        //
+        $mod = User::with("roles")->findOrFail($id);
+        $this->validate($request,[
+            'username'=> 'required',
+            'fullname'=> 'required',
+            'email'=> 'required|email',
+            'role'=> 'required'
+        ]);
+            if($mod->hasRole($request->role)){
+                $mod->update([
+                    'username'=> $request->username,
+                    'fullname'=> $request->fullname,
+                    'email'=> $request->email,
+                ]);
+
+            }else{
+                $mod->update([
+                    'username'=> $request->username,
+                    'fullname'=> $request->fullname,
+                    'email'=> $request->email,
+                ]);
+                $mod->removeRole($mod->getRoleNames()->first());
+                $mod->assignRole($request->role);
+            }
+            return redirect()->route('moderators.index')->with("success",'تم التحديث بنجاح');
     }
 
     /**
