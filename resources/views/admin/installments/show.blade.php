@@ -161,6 +161,11 @@
                                     >
                                         أرسل تذكير بالدفع عن طريق واتساب
                                     </button>
+                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#sms-modal"
+                                            data-remains-installment="{{ $request->total - $request->installments->where('installment_status','approved')->sum('value') }}"
+                                    >
+                                        أرسل تذكير بالدفع عن طريق الرسائل النصية
+                                    </button>
                                 </td>
                             </tr>
 
@@ -202,6 +207,45 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="modal fade" id="sms-modal" tabindex="-1" role="dialog" aria-labelledby="share code to mobile" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+
+                                        <h5 class="modal-title" id="sms-modal-title">إرسال تذكير على الجوال</h5>
+                                    </div>
+                                    <form action="{{route("sendSMS")}}" method="post">
+                                    <div class="modal-body">
+
+                                            @csrf
+                                            <div class="form-group">
+                                                <label for="smsphone">رقم الهاتف</label>
+                                                <input name="phone" type="tel" class="form-control" id="smsphone" value="{{$request->user->phone_number}}">
+                                                <small class="form-text text-muted">
+                                                    اكتب رقم الهاتف كامل بمفتاح الدولة
+                                                </small>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="smsMessage">رسالة التذكير</label>
+                                                <textarea name="message" class="form-control" id="smsMessage" rows="3">
+                            الرجاء دفع الاقساط المتبقية والتي تبلغ
+                                                {{ $request->total - $request->installments->where('installment_status','approved')->sum('value') }}
+                        </textarea>
+                                            </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input class="btn btn-warning btn-block" type="submit" value="إرسال">
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
                     @endif
                     @if(count($request->installments) == 0)
                         <div class="alert alert-warning" role="alert">
@@ -228,6 +272,12 @@
             let remainsInstallment = e.relatedTarget.attributes[4].textContent;
             let tex = $("#invText").val("الرجاء دفع الأقساط المتبقية والتي تبلغ : ");
             $("#invText").val( tex.val() + " " + remainsInstallment );
+
+        });
+        $('#sms-modal').on('shown.bs.modal', function (e) {
+            let remainsInstallment = e.relatedTarget.attributes[4].textContent;
+            let tex = $("#smsMessage").val("الرجاء دفع الأقساط المتبقية والتي تبلغ : ");
+            $("#smsMessage").val( tex.val() + " " + remainsInstallment );
 
         })
         $("#send-invite").on('click',function(e){

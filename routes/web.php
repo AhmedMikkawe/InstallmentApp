@@ -83,6 +83,7 @@ Route::group(['prefix'=>"admin","middleware"=>["auth","role:super-admin|moderato
     Route::post("/profile/edit",[ProfileController::class, 'update'])->name('profile.update');
     Route::post("/profile/changePassword",[ProfileController::class,'changePassword'])->name('changePassword');
     Route::resource("moderators",'App\Http\Controllers\ModeratorsController');
+    Route::post("/sms/send",[\App\Http\Controllers\SMSController::class,'send'])->name("sendSMS");
 });
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
