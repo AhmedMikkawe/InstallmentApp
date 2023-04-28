@@ -56,13 +56,13 @@ Route::group(['prefix'=>"admin","middleware"=>["auth","role:super-admin|moderato
 
     Route::post("/invite_code/create", [InviteCodeController::class, 'store']);
     /*Installments*/
-    Route::get("/installments",[InstallmentRequestController::class,'all'])->name("allInstallmentRequests");
-    Route::get("/installments/rejected",[InstallmentRequestController::class,'allRejected'])->name("allRejectedInstallmentRequests");
-    Route::get("/installments/approved",[InstallmentRequestController::class,'allApproved'])->name("allApprovedInstallmentRequests");
+    Route::get("/installments",[InstallmentRequestController::class,'all'])->middleware('role:super-admin')->name("allInstallmentRequests");
+    Route::get("/installments/rejected",[InstallmentRequestController::class,'allRejected'])->middleware('role:super-admin')->name("allRejectedInstallmentRequests");
+    Route::get("/installments/approved",[InstallmentRequestController::class,'allApproved'])->middleware('role:super-admin')->name("allApprovedInstallmentRequests");
     Route::get("/installments/pending",[InstallmentRequestController::class,'allPending'])->name("allPendingInstallmentRequests");
 
-    Route::get("/installments/create",[InstallmentRequestController::class, 'adminAddInstallmentRequest'])->name("adminAddInstallmentRequest");
-    Route::post("/installments/create",[InstallmentRequestController::class, 'adminStoreInstallmentRequest'])->name("adminStoreInstallmentRequest");
+    Route::get("/installments/create",[InstallmentRequestController::class, 'adminAddInstallmentRequest'])->middleware('role:super-admin')->name("adminAddInstallmentRequest");
+    Route::post("/installments/create",[InstallmentRequestController::class, 'adminStoreInstallmentRequest'])->middleware('role:super-admin')->name("adminStoreInstallmentRequest");
 
 
     Route::get("/installments/{id}",[InstallmentRequestController::class, 'showInstallmentRequest'])->name("certainRequest");

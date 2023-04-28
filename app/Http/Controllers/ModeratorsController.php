@@ -93,9 +93,9 @@ class ModeratorsController extends Controller
     {
         $mod = User::with("roles")->findOrFail($id);
         $this->validate($request,[
-            'username'=> 'required',
+            'username'=> 'required|unique:users,username,'.$id.'id',
             'fullname'=> 'required',
-            'email'=> 'required|email',
+            'email'=> 'required|email|unique:users,email,'.$id.'id',
             'role'=> 'required'
         ]);
             if($mod->hasRole($request->role)){
