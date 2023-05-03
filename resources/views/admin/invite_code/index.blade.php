@@ -49,6 +49,11 @@
                             >
                                 أرسل دعوة عن طريق واتساب
                             </button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#message-modal"
+                                    data-invite-code="{{$invite_code->code}}"
+                            >
+                                أرسل SMS
+                            </button>
                         @endif
 
 
@@ -103,6 +108,49 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="message-modal" tabindex="-1" role="dialog" aria-labelledby="share code to phone number using sms" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                    <h5 class="modal-title" id="message-modal-title">إرسال كود الدعوة عن طريق sms</h5>
+                </div>
+                <form action="{{route('sendSMS')}}" method="POST">
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label for="message_invCode">الكود</label>
+                        <input type="email" class="form-control" id="message_invCode" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="message_phone">رقم الهاتف</label>
+                        <input name="phone" type="tel" class="form-control" id="message_phone" >
+                        <small class="form-text text-muted">
+                            اكتب رقم الهاتف كامل بمفتاح الدولة
+                        </small>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="message_invText">نص الدعوة</label>
+                        <textarea name="message" class="form-control" id="message_invText" rows="3">
+                            الرجاء استخدام هذا الرابط اثناء التسجيل
+                        </textarea>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                        @csrf
+                    <input class="btn btn-success btn-block" type="submit" value="إرسال">
+                </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
 
 @endsection
 @section('scripts')
@@ -115,7 +163,14 @@
             let tex = $("#invText").val("الرجاء استخدام هذا الرابط اثناء التسجيل:");
             $("#invText").val( tex.val() + " " + "{{url('/register?code=')}}" + incode.val());
 
-        })
+        });
+        $('#message-modal').on('shown.bs.modal', function (e) {
+            let incode = $('#message_invCode').val(e.relatedTarget.attributes[4].textContent);
+            let phone = $("#message_phone").val("");
+            let tex = $("#message_invText").val("الرجاء استخدام هذا الرابط اثناء التسجيل:");
+            $("#message_invText").val( tex.val() + " " + "{{url('/register?code=')}}" + incode.val());
+
+        });
         $("#send-invite").on('click',function(e){
            e.preventDefault();
            const WHATSAPP_LINK = "https://api.whatsapp.com/send";
