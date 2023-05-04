@@ -103,10 +103,10 @@
                     </div>
                     <div class="form-group">
                         <label for="phone-number">رقم الهاتف المحمول</label>
-                        <input name="phone-number" type="text" class="form-control @error("phone-number")
+                        <input name="phone_number" type="text" class="form-control @error("phone_number")
                             is-invalid
-                        @enderror" id="phone-number" placeholder="phone number" value="{{ old("phone-number") }}">
-                        @error("phone-number")
+                        @enderror" id="phone-number" placeholder="phone number" value="{{ old("phone_number") }}">
+                        @error("phone_number")
                           <div class="text-danger">
                               {{ $message }}
                           </div>

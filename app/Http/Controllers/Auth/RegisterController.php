@@ -19,11 +19,11 @@ class RegisterController extends Controller
         $this->validate($request,[
             "username"=>"min:3|max:20|required|unique:users",
             "fullname"=> "required|max:120|min:10",
-            "email"=>"required_without:phone-number|unique:users",
+            "email"=>"required_without:phone_number|unique:users",
             "password"=>"required|confirmed",
             "nationalId"=>"required|unique:users",
             "nationalId-photo"=>"required|image|mimes:jpg,png,jpeg",
-            "phone-number"=>"required_without:email|unique:users"
+            "phone_number"=>"required_without:email|unique:users"
         ]);
         $inviteCode = InviteCode::where('code', $request->code)->get();
         if(!$inviteCode->first() || !$inviteCode->first()->valid){
@@ -35,7 +35,7 @@ class RegisterController extends Controller
             "email" => $request->email,
             "password"=> Hash::make($request->password),
             "nationalId" => $request->nationalId,
-            "nationalId-photo"=>  $fileName = time().'.'.$request->file('nationalId-photo')->extension(),
+            "nationalId_photo"=>  $fileName = time().'.'.$request->file('nationalId-photo')->extension(),
             "phone_number"=> $request->get("phone-number")
         ]);
         InviteCode::where('code', $request->code)->update([
