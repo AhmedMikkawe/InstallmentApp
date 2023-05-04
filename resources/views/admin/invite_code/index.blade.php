@@ -24,6 +24,12 @@
                 </div>
 
               @endif
+                  @if (session('faild'))
+                      <div class="alert alert-danger" role="alert">
+                          {{ session('faild') }}
+                      </div>
+
+                  @endif
 
               <table class="table table-hover">
                 <thead>
