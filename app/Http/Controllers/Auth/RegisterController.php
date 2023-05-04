@@ -36,7 +36,7 @@ class RegisterController extends Controller
             "password"=> Hash::make($request->password),
             "nationalId" => $request->nationalId,
             "nationalId-photo"=>  $fileName = time().'.'.$request->file('nationalId-photo')->extension(),
-            "phone-number"=> $request->get("phone-number")
+            "phone_number"=> $request->get("phone-number")
         ]);
         InviteCode::where('code', $request->code)->update([
             'valid'=> False
