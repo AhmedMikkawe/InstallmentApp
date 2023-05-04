@@ -17,7 +17,10 @@ class ModeratorsController extends Controller
      */
     public function index()
     {
-        $users = User::with('roles')->get();
+        $users = User::with("roles")->whereHas("roles", function($q) {
+            $q->whereIn("name", ["super-admin","moderator"]);
+        })->get();
+
         return view('admin.moderators.index',['users'=>$users]);
 
     }
