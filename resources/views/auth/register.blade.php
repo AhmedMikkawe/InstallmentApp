@@ -114,7 +114,7 @@
                       </div>
 
                   <div class="form-group">
-                    <label for="nationalId">رقم البطاقة القومية</label>
+                    <label for="nationalId">رقم الهوية</label>
                     <input name="nationalId" type="text" class="form-control @error("nationalId")
                     is-invalid
                     @enderror" id="nationalId" placeholder="Enter National ID" value="{{ old("nationalId") }}">
@@ -125,7 +125,7 @@
                         @enderror
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputFile">صورة البطاقة القومية</label>
+                    <label for="exampleInputFile">صورة الهوية</label>
                     <div class="input-group">
                       <div class="custom-file">
                         <input name="nationalId-photo" type="file" id="exampleInputFile" accept="image/*">
