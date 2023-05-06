@@ -53,7 +53,6 @@ class KafeelController extends Controller
             ]);
             $request->file('national_id_photo')->move(public_path('uploads/kafeel_nationalId'), $fileName);
         }
-
-        return redirect()->route("kafeel.edit",$id)->with('success',"Kafeel Information Updated Successfully");
+        return redirect()->route("kafeel.edit",auth()->user()->id)->with('success',"Kafeel Information Updated Successfully");
     }
 }
